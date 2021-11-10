@@ -9,6 +9,7 @@ const fs = require("fs");
 const shell = require('shelljs');
 const { program } = require('commander');
 const config = require("./package.json")
+
 program
   .version(config.version)
   .option('-r, --repo <type>', 'output extra debugging')
@@ -37,7 +38,7 @@ if (!shell.which('gh')) {
 }
 
 const org = options.org;
-if (!org) {
+if (!org || !repo)  {
   if (program.args.length < 2) program.help()
 
 }
