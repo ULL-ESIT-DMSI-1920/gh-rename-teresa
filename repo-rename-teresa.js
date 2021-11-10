@@ -8,9 +8,9 @@ const deb = (...args) => {
 const fs = require("fs");
 const shell = require('shelljs');
 const { program } = require('commander');
-
+const config = require("./package.json")
 program
-  .version('0.1.1')
+  .version(config.version)
   .option('-r, --repo <type>', 'output extra debugging')
   .option('-o, --org <type>', 'small pizza size')
 
