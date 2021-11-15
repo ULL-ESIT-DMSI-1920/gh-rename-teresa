@@ -37,7 +37,6 @@ if (!shell.which('gh')) {
   shell.echo('Sorry, this script requires gh cli');
   shell.exit(1);
 }
-
 let newName;
 if (!org) {
   [org, repo] = args[0].split("/");
@@ -49,8 +48,12 @@ if(!org || !repo || !newName) program.help()
 
 if(program.args.length < 1) program.help();
 
-shell.exec(`gh api -X PATCH "/repos/${org}/${repo}"  -f  name=${newName}`);
-
+let r = shell.exec {
+  `gh api -X PATCH "/repos/${org}/${repo}"  -f  name=${newName} --jq .[].name`,
+{silent:false}
+};
+console.log(`stdout= ${r.stdout}`);
+console.log(`stderr= ${r.stderr}`);
 
 /*
 if (!repo) {
