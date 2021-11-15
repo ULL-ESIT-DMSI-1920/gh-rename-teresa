@@ -45,7 +45,11 @@ if (!org) {
   console.log(`newName = ${newName}`)
 }
 if(!newName) newName = args[0]
-if(!org || !repo || newName) program.help()
+if(!org || !repo || !newName) program.help()
+
+if(program.args.length < 1) program.help();
+
+
 
 
 /*
