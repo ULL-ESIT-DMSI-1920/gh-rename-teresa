@@ -49,7 +49,7 @@ if(!org || !repo || !newName) program.help()
 
 if(program.args.length < 1) program.help();
 
-
+shell.exec(`gh api -X PATCH "/repos/${org}/${repo}"  -f  name=${newName}`);
 
 
 /*
