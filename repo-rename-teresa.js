@@ -11,10 +11,7 @@ program
   .option ('-n, --name, <name>', 'name')
 
 program.parse(process.argv);
-let originalName = `${program.opts().name}`;
 let args = program.args; 
-
-
 let {org, repo, name} = program.opts();
 
 if (!org | !repo | !name) program.help();
@@ -33,7 +30,7 @@ if (!shell.which('gh')) {
 let r = shell.exec (`gh api -X PATCH "/repos/${org}/${repo}"  -f  name=${name} `, {silent:true});
 
 r = JASON.parse(r.stdout);
-console.log(`The repo ${org}/${orginalName} has been renamed to ${name});
+console.log(`The repo has been renamed to ${name});
 
 
 }
