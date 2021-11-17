@@ -30,10 +30,9 @@ if (!shell.which('gh')) {
 let r = shell.exec (`gh api -X PATCH "/repos/${org}/${repo}"  -f  name=${name} `, {silent:true});
 
 r = JASON.parse(r.stdout);
-console.log(`The repo has been renamed to ${name});
+console.log(`The repo has been renamed to ${name}`);
 
 
-}
 /*
 if (options.repo) console.log(op
   tions.repo);
