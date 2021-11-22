@@ -1,0 +1,39 @@
+// obtén el id del repositorio
+
+const getRepoId = (owner, newName) => '
+ query getRepoId{
+repository(owner:$(owner), name: ${newName}){
+    id
+}
+
+}
+'
+;
+// cambio de nombre de un repo con graphQL
+
+const renameRepo = (id) => '
+mutation {
+    renameRepository($id: ID!) {
+    updateRepository(input:
+    {
+        name: "pruebafunciona"
+        repositoryId:$id
+    }
+    )
+    repository {
+        name
+    }
+}
+}
+'
+;
+
+
+
+//query variables
+{
+    "id": "lo que de la consulta1"
+}
+
+//cat temp.ggl - pegas la consulta 
+// npm run list-prueba
