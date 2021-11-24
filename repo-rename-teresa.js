@@ -31,7 +31,35 @@ let r = shell.exec (`gh api -X PATCH "/repos/${org}/${repo}"  -f  name=${name} `
 
 r = JASON.parse(r.stdout);
 console.log(`The repo has been renamed to ${name}`);
+// obtén el id del repositorio
 
+const getRepoId = (owner, name) => `
+ query getRepoId{
+repository(owner:$(owner), name: ${name}){
+    id
+}
+
+}
+`
+;
+// cambio de nombre de un repo con graphQL
+
+const renameRepo = (id) => `
+mutation {
+    renameRepository($id: ID!) {
+    updateRepository(input:
+    {
+        name: "pruebafunciona"
+        repositoryId:${id}
+    }
+    )
+    repository {
+        name
+    }
+}
+}
+`
+;
 
 /*
 if (options.repo) console.log(op
